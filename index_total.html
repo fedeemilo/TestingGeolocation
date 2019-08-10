@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Blinker&display=swap" rel="stylesheet">
+    <title>Probando Geolocalización</title>
+    <style>
+        body {
+            font-family: 'Blinker', sans-serif;
+        }
+
+        main {
+            margin: 0 auto;
+            display: inline;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+        
+        #contenedor_tablas {
+            text-align: center;
+            width: 50rem;
+            margin-top: 1rem;
+            margin-right: 100px;
+            margin-bottom: 1rem;
+            padding: 10px;
+            float: right;
+            border: 1px solid black;
+        }
+
+        .tit_tabla {
+            float: left;
+            text-align: center;
+        }
+
+        ul {
+            margin: 0;
+            padding: 10px;
+            list-style-type: none;
+        }
+
+        ul li {
+            list-style: none;
+        }
+
+        hr {
+            height: 1px;
+            width: 150px;
+            
+        }
+
+        .registro_apis {
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            text-align: center; 
+            float: left;
+            border: 1px solid black;
+            overflow: hidden;
+            height: 51.25rem;
+            width: 22.5rem;
+        }
+
+        .bandera {
+            width:250px; 
+            height: 160px;
+            display:inline-block;
+            margin:0 1em;
+            text-align: justify
+        }
+
+        @media screen and (max-width: 600px) {
+            .contenedor_tablas {
+                display: none;
+                visibility: hidden;
+                border: none;
+            }
+
+            #tabla_ipapi {
+                display: none;
+                visibility: hidden;
+            }
+
+            #tabla_weather {
+                display: none;
+                visibility: hidden;
+            }
+
+         }
+
+        
+
+    </style>
+</head>
+<body>
+    <main>
+
+      
+        
+        <div class='registro_apis'>
+            <h1>Probando OpenWeather + ipapi.com</h1>
+            <h2 id='latlongitud'></h2>
+            <h2 id="temperatura"></h2>
+            <h2 id='temp_min'></h2>
+            <h2 id="temp_max"></h2>
+            <h2 id="localidad"></h2>
+            <h2 id='ciudad'></h2>
+            <h2 id='cod_postal'></h2>
+            <div>
+                <img src="" id='icono_clima'>
+                <h3 id='cielo'></h3>
+            </div>
+            <div class="bandera">
+                <h3 id="pais"></h3>
+                <img src="" id='flag' style="width:100%;float: left">
+            </div>
+        </div>
+        
+        <div id='contenedor_tablas'>
+            <!-- TABLA IPAPI -->
+            <div id='tabla_ipapi'>
+                    <h1>Precios API's</h1>
+                    <h2>ipapi.com & openweather.org</h2>
+                    <table style='width:100%'>
+                        <h3 class='tit_tabla'>ipapi.com</h3>
+                        <tr>
+                            <th>Free</th>
+                            <th>Standard</th>
+                            <th>Business</th>
+                            <th>Business Pro</th>
+                            <th>Enterprise</th>
+                        </tr>
+                        <tr>
+                            <td>U$S 0 por mes</td>
+                            <td>U$S 10 por mes / U$S 8 con pago anual</td>
+                            <td>U$S 50 por mes / U$S 40 con pago anual</td>
+                            <td>U$S 100 por mes / U$S 80 con pago anual</td>
+                            <td>Precios Personalizados</td>
+                        </tr>            
+                        <tr>
+                            <td>10.000 búsquedas</td>
+                            <td>50.000 búsquedas</td>
+                            <td>500.000 búsquedas</td>
+                            <td>2.000.000 búsquedas</td>
+                            <td>Búsquedas de alto volúmen</td>
+                        </tr>
+                        <tr>
+                            <td>Soporte Limitado</td>
+                            <td>Soporte Ilimitado</td>
+                            <td>Soporte Ilimitado</td>
+                            <td>Soporte Preferido</td>
+                            <td>Soporte Dedicado</td>
+                        </tr>
+                        <tr>
+                            <td>Datos de la ubicación</td>
+                            <td>
+                                <ul>
+                                    <li>Datos de la ubicación</li>
+                                    <hr>
+                                    <li>Encriptado HTTPS</li>
+                                    <hr>
+                                    <li>Datos de la Moneda</li>
+                                    <hr>
+                                    <li>Datos de la Zona Horaria</li>
+                                    <hr>
+                                    <li>Datos de la Conexión</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>Datos de la ubicación</li>
+                                    <hr>
+                                    <li>Encriptado HTTPS</li>
+                                    <hr>
+                                    <li>Datos de la Moneda</li>
+                                    <hr>
+                                    <li>Datos de la Zona Horaria</li>
+                                    <hr>
+                                    <li>Datos de la Conexión</li>
+                                    <hr>
+                                    <li>Búsquedas Masivas</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>Datos de la Ubicación</li>
+                                    <hr>
+                                    <li>Encriptado HTTPS</li>
+                                    <hr>
+                                    <li>Datos de la Moneda</li>
+                                    <hr>
+                                    <li>Datos de la Zona Horaria</li>
+                                    <hr>
+                                    <li>Datos de la Conexión</li>
+                                    <hr>
+                                    <li>Búsquedas Masivas</li>
+                                    <hr>
+                                    <li>Seguridad de Datos</li>
+                                    <hr>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>Datos de la Ubicación</li>
+                                    <hr>
+                                    <li>Encriptado HTTPS</li>
+                                    <hr>
+                                    <li>Datos de la Moneda</li>
+                                    <hr>
+                                    <li>Datos de la Zona Horaria</li>
+                                    <hr>
+                                    <li>Datos de la Conexión</li>
+                                    <hr>
+                                    <li>Búsquedas Masivas</li>
+                                    <hr>
+                                    <li>Seguridad de Datos</li>
+                                    <hr>
+                                    <li>Soluciones Personalizadas<li>
+                                        <hr>
+                                </ul>
+                            </td>
+                        </tr>                         
+                    </table>       
+            </div>
+
+            <div id="tabla_weather">
+                    <table style='width:100%'>
+                        <h3 class='tit_tabla'>openweather.org</h3>
+                        <tr>
+                            <th>Free</th>
+                            <th>Standard</th>
+                            <th>Business</th>
+                            <th>Business Pro</th>
+                            <th>Enterprise</th>
+                        </tr>
+                        <tr>
+                            <td>U$S 0 por mes</td>
+                            <td>U$S 10 por mes / U$S 8 con pago anual</td>
+                            <td>U$S 50 por mes / U$S 40 con pago anual</td>
+                            <td>U$S 100 por mes / U$S 80 con pago anual</td>
+                            <td>Precios Personalizados</td>
+                        </tr>            
+                        <tr>
+                            <td>10.000 búsquedas</td>
+                            <td>50.000 búsquedas</td>
+                            <td>500.000 búsquedas</td>
+                            <td>2.000.000 búsquedas</td>
+                            <td>Búsquedas de alto volúmen</td>
+                        </tr>
+                        <tr>
+                            <td>Soporte Limitado</td>
+                            <td>Soporte Ilimitado</td>
+                            <td>Soporte Ilimitado</td>
+                            <td>Soporte Preferido</td>
+                            <td>Soporte Dedicado</td>
+                        </tr>
+                        <tr>
+                            <td>Datos de la ubicación</td>
+                            <td>
+                                <ul>
+                                    <li>Datos de la ubicación</li>
+                                    <hr>
+                                    <li>Encriptado HTTPS</li>
+                                    <hr>
+                                    <li>Datos de la Moneda</li>
+                                    <hr>
+                                    <li>Datos de la Zona Horaria</li>
+                                    <hr>
+                                    <li>Datos de la Conexión</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>Datos de la ubicación</li>
+                                    <hr>
+                                    <li>Encriptado HTTPS</li>
+                                    <hr>
+                                    <li>Datos de la Moneda</li>
+                                    <hr>
+                                    <li>Datos de la Zona Horaria</li>
+                                    <hr>
+                                    <li>Datos de la Conexión</li>
+                                    <hr>
+                                    <li>Búsquedas Masivas</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>Datos de la Ubicación</li>
+                                    <hr>
+                                    <li>Encriptado HTTPS</li>
+                                    <hr>
+                                    <li>Datos de la Moneda</li>
+                                    <hr>
+                                    <li>Datos de la Zona Horaria</li>
+                                    <hr>
+                                    <li>Datos de la Conexión</li>
+                                    <hr>
+                                    <li>Búsquedas Masivas</li>
+                                    <hr>
+                                    <li>Seguridad de Datos</li>
+                                    <hr>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>Datos de la Ubicación</li>
+                                    <hr>
+                                    <li>Encriptado HTTPS</li>
+                                    <hr>
+                                    <li>Datos de la Moneda</li>
+                                    <hr>
+                                    <li>Datos de la Zona Horaria</li>
+                                    <hr>
+                                    <li>Datos de la Conexión</li>
+                                    <hr>
+                                    <li>Búsquedas Masivas</li>
+                                    <hr>
+                                    <li>Seguridad de Datos</li>
+                                    <hr>
+                                    <li>Soluciones Personalizadas<li>
+                                        <hr>
+                                </ul>
+                            </td>
+                        </tr>                         
+                    </table>       
+            </div>
+                
+        </div>
+
+        
+    </main>
+
+    
+
+    
+
+
+    
+
+      <!-- jQuery -->
+    <!-- necesario para que funcione el slider del chat -->
+    <script
+        src="https://code.jquery.com/jquery-1.10.2.js"
+        integrity="sha256-it5nQKHTz+34HijZJQkpNBIHsjpV8b6QzMJs9tmOBSo="
+        crossorigin="anonymous">
+    </script>
+    <script src='//code.jquery.com/ui/1.11.4/jquery-ui.js'></script>
+
+
+    <script src="script_mapa.js"></script>
+    
+</body>
+</html>
