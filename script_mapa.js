@@ -68,11 +68,13 @@ console.log(localStorage);
 var access_key_ipapi = 'be01136fd4764adc6ca013ae7c59882f';
 // API key openweather.org
 var access_key_openwe = '7dc0fd11d872c5087f99c2e5debc2413';
+//API key de api.ipdata.co
+// var acces_key_ipdata = 'ddab562a0a81f6589d4744f5db975f0555a394a5bf2cd896adbb58dd'
 
 $.get('http://api.ipapi.com/check?access_key=' + access_key_ipapi, function(respuesta_ip) {
 
   var ip = respuesta_ip['ip'];
-  // var ip = '51.158.120.84';
+  // var ip = '41.203.239.255';
   console.log(respuesta_ip)
   // get the API result via jQuery.ajax
   $.ajax({
@@ -89,7 +91,9 @@ $.get('http://api.ipapi.com/check?access_key=' + access_key_ipapi, function(resp
         var img_bandera = json['location']['country_flag'];
         var zip_code = json['zip'];
         var lat = json['latitude'].toFixed(1);
+        console.log('Lat: ' + lat);;
         var lon = json['longitude'].toFixed(1);
+        console.log('Lon: ' + lon);
         $('#localidad').text('Localidad: ' + localidad)
         $('#ciudad').text('Ciudad: ' + ciudad);
         $('#flag').attr('src', img_bandera);
@@ -120,7 +124,7 @@ $.get('http://api.ipapi.com/check?access_key=' + access_key_ipapi, function(resp
             'light rain': 'Lluvia ligera'
           }
       
-          $('#latlongitud').text('Lat y Long: ' + lat + ', ' + lon);
+          $('#latlongitud').text('Lat & Long: ' + lat + ', ' + lon);
           $('#temperatura').text('Temp°: ' + temp_c);
           $('#temp_min').text('Temp° mínima: ' + temp_min);
           $('#temp_max').text('Temp° máxima: ' + temp_max);
@@ -134,3 +138,45 @@ $.get('http://api.ipapi.com/check?access_key=' + access_key_ipapi, function(resp
   });
 });
 
+
+// RELOJ
+function mueveReloj(){ 
+  momentoActual = new Date() 
+  hora = momentoActual.getHours() 
+  console.log(typeof(hora))
+  minuto = momentoActual.getMinutes() 
+  segundo = momentoActual.getSeconds() 
+
+  if (segundo < 10) {
+    horaImprimible = "   " + hora + " :  " + minuto + " :  0" + segundo
+  } else {
+    horaImprimible = "   " +  hora + " :  " + minuto + " :  " + segundo
+  }
+
+  
+
+  document.form_reloj.reloj.value = horaImprimible 
+
+  //La función se tendrá que llamar así misma para que sea dinámica, 
+  //de esta forma:
+
+  setTimeout(mueveReloj,1000)
+}
+
+var static = require('node-static');
+    
+var fileServer = new static.Server('./public');
+ 
+require('http').createServer(function (request, response) {
+    request.addListener('end', function () {
+        fileServer.serve(request, response, function (err, result) {
+            if (err) { // There was an error serving the file
+                console.error("Error serving " + request.url + " - " + err.message);
+ 
+                // Respond to the client
+                response.writeHead(err.status, err.headers);
+                response.end();
+            }
+        });
+    }).resume();
+}).listen(8080);
