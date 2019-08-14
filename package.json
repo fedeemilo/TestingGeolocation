@@ -1,0 +1,23 @@
+{
+  "name": "testingeolocation",
+  "version": "1.0.0",
+  "description": "testing the two apis (ipapi + openweather) to inform where is the person who made the query and how is the weather",
+  "main": "script_mapa.js",
+  "dependencies": {
+    "fs": "^0.0.1-security"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fedeemilo/TestingGeolocation.git"
+  },
+  "author": "Federico Milone",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fedeemilo/TestingGeolocation/issues"
+  },
+  "homepage": "https://github.com/fedeemilo/TestingGeolocation#readme"
+}

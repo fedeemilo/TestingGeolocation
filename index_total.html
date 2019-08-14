@@ -9,28 +9,21 @@
     <link href="https://fonts.googleapis.com/css?family=Blinker&display=swap" rel="stylesheet">
     <!-- ESTILOS CSS -->
     <link rel="stylesheet" href="estilos.css">
+
     <title>Probando Geolocalización</title>
 
 </head>
-<body onload='mueveReloj()'>
+<body>
     <h1 id='cabecera'>Proyecto de Geolocalización</h1>
     
     <div class="flex-container">
             
                 <div class='registro_apis'>
-                        <div id="reloj_treal">
-                                <form name="form_reloj"> 
-                                        <input type="text" name="reloj" size="10" id='reloj_vivo'> 
-                                </form> 
-                        </div>
-                    
-                        <h1>OpenWeather + ipapi.com</h1>
-                        <h2 id='latlongitud'></h2>
+                        <h1>OpenWeather + ipapi.com</h1>    
                         <h2 id="temperatura"></h2>
                         <h2 id="localidad"></h2>
                         <h2 id='ciudad'></h2>
-                        <h2 id='cod_postal'></h2>
-                        <div>
+                        <div id='cnt_cielo'>
                             <img src="" id='icono_clima'>
                             <h3 id='cielo'></h3>
                         </div>
@@ -44,35 +37,31 @@
                         <!-- TABLA IPAPI -->
                         <div id='tabla_ipapi'>
                                 <h1>Precios API's</h1>
-                                <table style='width:100%'>
+                                <table style='width:100%' id='t_ipapi'>
                                     <h3 class='tit_tabla'>ipapi.com</h3>
                                     <tr>
                                         <th>Free</th>
                                         <th>Standard</th>
                                         <th>Business</th>
                                         <th>Business Pro</th>
-                                        <th>Enterprise</th>
                                     </tr>
                                     <tr>
                                         <td>U$S 0 por mes</td>
                                         <td>U$S 10 por mes / U$S 8 con pago anual</td>
                                         <td>U$S 50 por mes / U$S 40 con pago anual</td>
                                         <td>U$S 100 por mes / U$S 80 con pago anual</td>
-                                        <td>Precios Personalizados</td>
                                     </tr>            
                                     <tr>
                                         <td>10.000 búsquedas</td>
                                         <td>50.000 búsquedas</td>
                                         <td>500.000 búsquedas</td>
-                                        <td>2.000.000 búsquedas</td>
-                                        <td>Búsquedas de alto volúmen</td>
+                                        <td>2.000.000 búsquedas</td>                                       
                                     </tr>
                                     <tr>
                                         <td>Soporte Limitado</td>
                                         <td>Soporte Ilimitado</td>
                                         <td>Soporte Ilimitado</td>
-                                        <td>Soporte Preferido</td>
-                                        <td>Soporte Dedicado</td>
+                                        <td>Soporte Preferido</td>                                      
                                     </tr>
                                     <tr>
                                         <td>Datos de la ubicación</td>
@@ -122,59 +111,40 @@
                                                 <hr>
                                             </ul>
                                         </td>
-                                        <td>
-                                            <ul>
-                                                <li>Datos de la Ubicación</li>
-                                                <hr>
-                                                <li>Encriptado HTTPS</li>
-                                                <hr>
-                                                <li>Datos de la Moneda</li>
-                                                <hr>
-                                                <li>Datos de la Zona Horaria</li>
-                                                <hr>
-                                                <li>Datos de la Conexión</li>
-                                                <hr>
-                                                <li>Búsquedas Masivas</li>
-                                                <hr>
-                                                <li>Seguridad de Datos</li>
-                                                <hr>
-                                                <li>Soluciones Personalizadas<li>
-                                                    <hr>
-                                            </ul>
-                                        </td>
                                     </tr>                         
                                 </table>       
                     </div> <!--tabla ipapi -->
             
                     <div id="tabla_weather">
-                                <table bgcolor= "#00FFFF" style='width:100%'>
+                                <table style='width:100%' id="t_weather">
                                     <h3 class='tit_tabla'>openweather.org</h3>
                                     <tr>
                                         <th>Free</th>
                                         <th>Startup</th>
                                         <th>Developer</th>
                                         <th>Professional</th>
-                                        <th>Enterprise</th>
                                     </tr>
                                     <tr>
                                         <td>U$S 0 por mes</td>
                                         <td>U$S 40</td>
                                         <td>U$S 180</td>
                                         <td>U$S 470</td>
-                                        <td>U$S 2000</td>
                                     </tr>            
                                     <tr>
                                         <td>60 petisiones por minuto</td>
                                         <td>600 petisiones por minuto</td>
                                         <td>3000 petisiones por minuto</td>
-                                        <td>30000 petisiones por minuto</td>
-                                        <td>200000 petisiones por minuto</td>
+                                        <td>30000 petisiones por minuto</td> 
                                     </tr>
-                            </table>       
-                    </div> <!--tabla weather -->  
-                        <h2>+ info</h2>
-                        <a href="https://openweathermap.org/price">OpenWeather</a>
-                        <a href="https://ipapi.com/product">ipapi</a> 
+                                </table>       
+                    </div> <!--tabla weather -->
+                    <div id='info_tablas'> 
+
+                        <button class='boton_transicion mas_info' onclick='mostrarTabla()'>+ info</button>
+                        <a href="https://openweathermap.org/price" style='border-radius: 6px;'>OpenWeather</a>
+                        <a href="https://ipapi.com/product" style='border-radius: 6px;'>ipapi</a> 
+                    </div>  
+                        
                 </div> <!--contenedor de tablas -->
                     
                     <!-- <div id="cont_de43f39fbe28f05ccfbc831fe70e6f2a" style='height:200px'>
@@ -182,23 +152,33 @@
                     </div> -->
                 
                 <div class="widget">
-                            <h2>El <span style='color:red'>widget</span> de <a id='meteored' href="https://www.meteored.com.ar/widget/">meteored.com.ar</a> no tiene Geolocalización</h2>
-                            <h3>Sólo puede configurarse para dar el clima de un solo lugar a elección.</h3>
-                            <h3>Por otro lado, el código es inmodificable tanto en el diseño como en la lógica funcional.</h3>
-                            <div id="cont_442454309ec52ac73e71fccb62bec3e0">
-                                <script type="text/javascript" async src="https://www.meteored.com.ar/wid_loader/442454309ec52ac73e71fccb62bec3e0"></script>
-                            </div>
+                    <h2>El <span style='color:red'>widget</span> de <a id='meteored' href="https://www.meteored.com.ar/widget/">meteored.com.ar</a> no tiene Geolocalización</h2>
+                    <h3>Sólo puede configurarse para dar el clima de un solo lugar a elección.</h3>
+                    <h3>Por otro lado, el código es inmodificable tanto en el diseño como en la lógica funcional.</h3>
+                    <div id="cont_442454309ec52ac73e71fccb62bec3e0">
+                        <script type="text/javascript" async src="https://www.meteored.com.ar/wid_loader/442454309ec52ac73e71fccb62bec3e0"></script>
+                    </div>
                 </div>
-              
+
+                <div id='forecasts'>
+                    <div class='forecast-bsas'>
+                        <!-- Widget clima Buenos Aires-->
+                        <!-- https://forecast7.com/es/n34d60n58d38/buenos-aires/ -->
+                        <!-- Widget clima Neuquen-->
+                        <!-- https://forecast7.com/es/n38d95n68d06/neuquen/ -->
+                        <!-- Widget Puerto Madryn -->
+                        <!-- https://forecast7.com/es/n42d77n65d03/puerto-madryn/ -->
+                        <a id='wid_set' class="weatherwidget-io" href="" data-label_1="" data-label_2="Clima" data-font="Roboto" data-mode="Current" data-days="3" data-textcolor="#ffffff"></a>
+                        <script>
+                        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+                        </script>
+                        </a>
+                    </div>
+            
+               
+ 
+                </div>        
     </div>
-        
-    
-
-    
-
-
-    
-
       <!-- jQuery -->
     <!-- necesario para que funcione el slider del chat -->
     <script
@@ -207,9 +187,11 @@
         crossorigin="anonymous">
     </script>
     <script src='//code.jquery.com/ui/1.11.4/jquery-ui.js'></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    
 
     <script src="script_mapa.js"></script>
+
     
 </body>
 </html>
